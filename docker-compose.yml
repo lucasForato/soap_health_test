@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   frontend:
@@ -9,6 +9,7 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    restart: always
     container_name: soap-health-test-frontend
 
   backend:
@@ -17,4 +18,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    container_name: soap-health-test-backend 
+    restart: always
+    container_name: soap-health-test-backend
