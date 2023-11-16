@@ -12,7 +12,7 @@ export class ContactsRepository {
     try {
       this.database.createContact(contact);
       return Result.ok<void>();
-    } catch (error) {
+    } catch (error: any) {
       return Result.fail<Error>(new DatabaseException(error.message));
     }
   }
@@ -24,7 +24,7 @@ export class ContactsRepository {
         phoneNumberContains: phoneNumber,
       });
       return Result.ok<Contact[]>(contacts);
-    } catch (error) {
+    } catch (error: any) {
       return Result.fail<Error>(new DatabaseException(error.message));
     }
   }
@@ -33,7 +33,7 @@ export class ContactsRepository {
     try {
       this.database.updateContact(contact);
       return Result.ok<void>();
-    } catch (error) {
+    } catch (error: any) {
       return Result.fail<Error>(new DatabaseException(error.message));
     }
   }
@@ -42,7 +42,7 @@ export class ContactsRepository {
     try {
       const contact = this.database.getContactById(id);
       return Result.ok<Contact>(contact);
-    } catch (error) {
+    } catch (error: any) {
       return Result.fail<Error>(new DatabaseException(error.message));
     }
   }
@@ -51,7 +51,7 @@ export class ContactsRepository {
     try {
       this.database.deleteContactById(id);
       return Result.ok<void>();
-    } catch (error) {
+    } catch (error: any) {
       return Result.fail<Error>(new DatabaseException(error.message));
     }
   }

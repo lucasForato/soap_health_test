@@ -5,6 +5,10 @@ import Contact from 'src/core/entities/Contact';
 class Database {
   private contacts: Contact[] = [];
 
+  clean() {
+    this.contacts = [];
+  }
+
   getContacts(): Contact[] {
     return this.contacts;
   }
