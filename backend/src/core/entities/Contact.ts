@@ -1,4 +1,5 @@
 import { Entity } from 'src/shared/Entity';
+import { Result } from 'src/shared/Result';
 import { createUniqueIdentifier } from 'src/shared/UniqueIdentifier';
 
 interface ContactProps {
@@ -8,15 +9,19 @@ interface ContactProps {
 }
 
 interface ContactDto {
+  id: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
 }
 
 class Contact extends Entity<ContactProps> {
-  create(props: ContactProps, id: string): Contact {
+  static create(
+    props: ContactProps,
+    id?: string,
+  ): Result<Contact> | Result<Error> {
     const uuid = id ? id : createUniqueIdentifier();
-    return new Contact(props, uuid);
+    return Result.ok(new Contact(props, uuid));
   }
 
   get firstName(): string {
@@ -27,11 +32,16 @@ class Contact extends Entity<ContactProps> {
     return this.props.lastName;
   }
 
+  get phoneNumber(): string {
+    return this.props.phoneNumber;
+  }
+
   toDto(): ContactDto {
     return {
+      id: this.id,
       firstName: this.firstName,
       lastName: this.lastName,
-      phoneNumber: this.props.phoneNumber,
+      phoneNumber: this.phoneNumber,
     };
   }
 }

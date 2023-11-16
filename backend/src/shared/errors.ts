@@ -1,15 +1,18 @@
-import BaseError from './BaseError';
-import { StatusCodes } from 'http-status-codes';
+import { HttpException, HttpStatus } from '@nestjs/common';
 
 type ErrorDescription = {
   code: number;
   message: string;
 };
 
-export default class Exception extends BaseError {
+export default class Exception extends HttpException {
   constructor(error: ErrorDescription) {
-    super(error.code, error.message);
+    super(error.message, error.code);
   }
 }
 
-export const errors: { [k: string]: ErrorDescription } = {};
+export class DatabaseException extends Exception {
+  constructor(message: string) {
+    super({ message, code: HttpStatus.BAD_REQUEST });
+  }
+}

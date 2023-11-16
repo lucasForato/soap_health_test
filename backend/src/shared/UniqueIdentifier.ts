@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import * as crypto from 'node:crypto';
 
 type UniqueIdentifierProps = Readonly<string>;
 
