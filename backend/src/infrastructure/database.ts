@@ -19,8 +19,8 @@ class Database {
     if (!contact.lastName) throw new Error('Contact must have a last name');
     if (!contact.phoneNumber)
       throw new Error('Contact must have a phone number');
-    const idExists = this.contacts.some((contact) => contact.id === contact.id);
 
+    const idExists = this.contacts.some((contact) => contact.id === contact.id);
     if (idExists) throw new Error('Contact already exists');
 
     this.contacts.push(contact);

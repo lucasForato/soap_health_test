@@ -16,3 +16,9 @@ export class DatabaseException extends Exception {
     super({ message, code: HttpStatus.BAD_REQUEST });
   }
 }
+
+export class EntityException extends Exception {
+  constructor(message: string) {
+    super({ message, code: HttpStatus.BAD_REQUEST });
+  }
+}

@@ -3,6 +3,7 @@ import { UseCase } from 'src/shared/UseCase';
 import { ContactsRepository } from '../repositories/contacts.repository';
 import Contact from '../entities/Contact';
 import { Injectable } from '@nestjs/common';
+import { PhoneNumber } from 'src/shared/PhoneNumber';
 
 export type CreateContactUseCaseInput = {
   firstName: string;
@@ -21,7 +22,16 @@ export default class CreateContactUseCase
   execute(
     input: CreateContactUseCaseInput,
   ): Result<Error> | Result<CreateContactUseCaseOutput> {
-    const contactOrError = Contact.create(input);
+    const phoneNumberOrError = PhoneNumber.create(input.phoneNumber);
+    if (phoneNumberOrError.isFailure)
+      return phoneNumberOrError as Result<Error>;
+    const phoneNumber = phoneNumberOrError.getValue() as PhoneNumber;
+
+    const contactOrError = Contact.create({
+      firstName: input.firstName,
+      lastName: input.lastName,
+      phoneNumber,
+    });
     if (contactOrError.isFailure) return contactOrError as Result<Error>;
     const contact = contactOrError.getValue() as Contact;
 

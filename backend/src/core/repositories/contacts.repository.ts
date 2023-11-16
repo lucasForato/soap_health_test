@@ -11,6 +11,7 @@ export class ContactsRepository {
   create(contact: Contact): Result<void> | Result<Error> {
     try {
       this.database.createContact(contact);
+      return Result.ok<void>();
     } catch (error) {
       return Result.fail<Error>(new DatabaseException(error.message));
     }

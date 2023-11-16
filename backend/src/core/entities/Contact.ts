@@ -1,11 +1,13 @@
 import { Entity } from 'src/shared/Entity';
+import { PhoneNumber } from 'src/shared/PhoneNumber';
 import { Result } from 'src/shared/Result';
 import { createUniqueIdentifier } from 'src/shared/UniqueIdentifier';
+import { EntityException } from 'src/shared/errors';
 
 interface ContactProps {
   firstName: string;
   lastName: string;
-  phoneNumber: string;
+  phoneNumber: PhoneNumber;
 }
 
 interface ContactDto {
@@ -20,6 +22,27 @@ class Contact extends Entity<ContactProps> {
     props: ContactProps,
     id?: string,
   ): Result<Contact> | Result<Error> {
+    if (!props.firstName)
+      return Result.fail<Error>(
+        new EntityException('contact must have a first name'),
+      );
+    
+    if (props.firstName.includes(' ')) {
+      return Result.fail<Error>(
+        new EntityException('contact first name cannot contain spaces'),
+      );
+    }
+
+    if (!props.lastName)
+      return Result.fail<Error>(
+        new EntityException('contact must have a last name'),
+      );
+
+    if (!props.phoneNumber)
+      return Result.fail<Error>(
+        new EntityException('contact must have a phone number'),
+      );
+
     const uuid = id ? id : createUniqueIdentifier();
     return Result.ok(new Contact(props, uuid));
   }
@@ -32,7 +55,7 @@ class Contact extends Entity<ContactProps> {
     return this.props.lastName;
   }
 
-  get phoneNumber(): string {
+  get phoneNumber(): PhoneNumber {
     return this.props.phoneNumber;
   }
 
@@ -41,7 +64,7 @@ class Contact extends Entity<ContactProps> {
       id: this.id,
       firstName: this.firstName,
       lastName: this.lastName,
-      phoneNumber: this.phoneNumber,
+      phoneNumber: this.phoneNumber.toString(),
     };
   }
 }
