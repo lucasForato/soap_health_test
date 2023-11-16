@@ -10,7 +10,7 @@ interface ContactProps {
   phoneNumber: PhoneNumber;
 }
 
-interface ContactDto {
+export interface ContactDto {
   id: string;
   firstName: string;
   lastName: string;

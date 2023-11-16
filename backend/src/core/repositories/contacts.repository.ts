@@ -16,4 +16,16 @@ export class ContactsRepository {
       return Result.fail<Error>(new DatabaseException(error.message));
     }
   }
+
+  list(name?: string, phoneNumber?: string): Result<Contact[]> | Result<Error> {
+    try {
+      const contacts = this.database.listContacts({
+        nameContains: name,
+        phoneNumberContains: phoneNumber,
+      });
+      return Result.ok<Contact[]>(contacts);
+    } catch (error) {
+      return Result.fail<Error>(new DatabaseException(error.message));
+    }
+  }
 }

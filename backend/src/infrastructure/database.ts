@@ -26,6 +26,40 @@ class Database {
     this.contacts.push(contact);
   }
 
+  listContacts(input: {
+    nameContains?: string;
+    phoneNumberContains?: string;
+  }): Contact[] {
+    const { nameContains, phoneNumberContains } = input;
+
+    if (nameContains && phoneNumberContains) {
+      return this.contacts.filter((contact) => {
+        const contactName = contact.firstName + ' ' + contact.lastName;
+        return (
+          contactName.toLowerCase().includes(nameContains.toLowerCase()) &&
+          contact.phoneNumber
+            .toString()
+            .toLowerCase()
+            .includes(phoneNumberContains.toLowerCase())
+        );
+      });
+    }
+
+    if (nameContains) {
+      return this.contacts.filter((contact) => {
+        const contactName = contact.firstName + ' ' + contact.lastName;
+        return contactName.toLowerCase().includes(nameContains.toLowerCase());
+      });
+    }
+
+    if (phoneNumberContains) {
+      return this.contacts.filter((contact) =>
+        contact.phoneNumber.toString().includes(phoneNumberContains),
+      );
+    }
+    return this.contacts;
+  }
+
   deleteContactById(id: string): void {
     this.contacts = this.contacts.filter((contact) => contact.id !== id);
   }
