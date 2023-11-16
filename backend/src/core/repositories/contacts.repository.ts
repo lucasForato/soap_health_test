@@ -28,4 +28,22 @@ export class ContactsRepository {
       return Result.fail<Error>(new DatabaseException(error.message));
     }
   }
+
+  update(contact: Contact): Result<void> | Result<Error> {
+    try {
+      this.database.updateContact(contact);
+      return Result.ok<void>();
+    } catch (error) {
+      return Result.fail<Error>(new DatabaseException(error.message));
+    }
+  }
+
+  getById(id: string): Result<Contact> | Result<Error> {
+    try {
+      const contact = this.database.getContactById(id);
+      return Result.ok<Contact>(contact);
+    } catch (error) {
+      return Result.fail<Error>(new DatabaseException(error.message));
+    }
+  }
 }

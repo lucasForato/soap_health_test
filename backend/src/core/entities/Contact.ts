@@ -27,11 +27,10 @@ class Contact extends Entity<ContactProps> {
         new EntityException('A contact must have a first name'),
       );
 
-    if (props.firstName.includes(' ')) {
+    if (props.firstName.includes(' '))
       return Result.fail<Error>(
         new EntityException('First name cannot contain spaces'),
       );
-    }
 
     if (!props.lastName)
       return Result.fail<Error>(
@@ -57,6 +56,13 @@ class Contact extends Entity<ContactProps> {
 
   get phoneNumber(): PhoneNumber {
     return this.props.phoneNumber;
+  }
+
+  update(props: Partial<ContactProps>): void {
+    for (const [key, value] of Object.entries(props)) {
+      if (key === 'id') continue;
+      this.props = { ...this.props, ...{ [key]: value } };
+    }
   }
 
   toDto(): ContactDto {

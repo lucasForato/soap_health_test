@@ -60,6 +60,16 @@ class Database {
     return this.contacts;
   }
 
+  updateContact(contact: Contact): void | Error {
+    const contactIndex = this.contacts.findIndex(
+      (item) => item.id === contact.id,
+    );
+
+    if (contactIndex === -1) throw new Error('Contact does not exist');
+
+    this.contacts[contactIndex] = contact;
+  }
+
   deleteContactById(id: string): void {
     this.contacts = this.contacts.filter((contact) => contact.id !== id);
   }

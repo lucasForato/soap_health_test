@@ -34,3 +34,13 @@ export class EntityException extends Exception {
     });
   }
 }
+
+export class NotFoundException extends Exception {
+  constructor(message: string) {
+    super({
+      message: [message],
+      error: 'Not Found',
+      code: HttpStatus.NOT_FOUND,
+    });
+  }
+}
