@@ -24,23 +24,23 @@ class Contact extends Entity<ContactProps> {
   ): Result<Contact> | Result<Error> {
     if (!props.firstName)
       return Result.fail<Error>(
-        new EntityException('contact must have a first name'),
+        new EntityException('A contact must have a first name'),
       );
-    
+
     if (props.firstName.includes(' ')) {
       return Result.fail<Error>(
-        new EntityException('contact first name cannot contain spaces'),
+        new EntityException('First name cannot contain spaces'),
       );
     }
 
     if (!props.lastName)
       return Result.fail<Error>(
-        new EntityException('contact must have a last name'),
+        new EntityException('A contact must have a last name'),
       );
 
     if (!props.phoneNumber)
       return Result.fail<Error>(
-        new EntityException('contact must have a phone number'),
+        new EntityException('A contact must have a phone number'),
       );
 
     const uuid = id ? id : createUniqueIdentifier();

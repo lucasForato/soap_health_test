@@ -4,12 +4,19 @@ import { ContactsRepository } from '../repositories/contacts.repository';
 import Contact from '../entities/Contact';
 import { Injectable } from '@nestjs/common';
 import { PhoneNumber } from 'src/shared/PhoneNumber';
+import { IsString, Length } from 'class-validator';
 
-export type CreateContactUseCaseInput = {
+export class CreateContactUseCaseInput {
+  @IsString()
   firstName: string;
+
+  @IsString()
   lastName: string;
+
+  @IsString()
+  @Length(1, 15)
   phoneNumber: string;
-};
+}
 
 export type CreateContactUseCaseOutput = void;
 
