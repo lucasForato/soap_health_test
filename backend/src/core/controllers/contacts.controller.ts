@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -20,6 +21,9 @@ import UpdateContactCompletelyUseCase, {
 import UpdateContactPartiallyUseCase, {
   UpdateContactPartiallyUseCaseInput,
 } from '../usecases/UpdateContactPartiallyUseCase';
+import DeleteContactUseCase, {
+  DeleteContactUseCaseInput,
+} from '../usecases/DeleteContactUseCase';
 
 @Controller('contacts')
 export class ContactsController {
@@ -28,6 +32,7 @@ export class ContactsController {
     private listContactsUseCase: ListContactsUseCase,
     private updateContactCompletelyUseCase: UpdateContactCompletelyUseCase,
     private updateContactPartiallyUseCase: UpdateContactPartiallyUseCase,
+    private deleteContactUseCase: DeleteContactUseCase,
   ) {}
 
   @Post('/')
@@ -66,6 +71,13 @@ export class ContactsController {
       ...input,
       id,
     });
+    if (responseOrError.isFailure) throw responseOrError.getError();
+    return responseOrError.getValue();
+  }
+
+  @Delete('/:id')
+  deleteContact(@Param() params: DeleteContactUseCaseInput) {
+    const responseOrError = this.deleteContactUseCase.execute(params);
     if (responseOrError.isFailure) throw responseOrError.getError();
     return responseOrError.getValue();
   }

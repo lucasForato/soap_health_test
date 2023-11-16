@@ -6,6 +6,7 @@ import { ContactsRepository } from './repositories/contacts.repository';
 import ListContactsUseCase from './usecases/ListContactsUseCase';
 import UpdateContactCompletelyUseCase from './usecases/UpdateContactCompletelyUseCase';
 import UpdateContactPartiallyUseCase from './usecases/UpdateContactPartiallyUseCase';
+import DeleteContactUseCase from './usecases/DeleteContactUseCase';
 
 @Module({
   imports: [InfrastructureModule],
@@ -16,6 +17,7 @@ import UpdateContactPartiallyUseCase from './usecases/UpdateContactPartiallyUseC
     ListContactsUseCase,
     UpdateContactCompletelyUseCase,
     UpdateContactPartiallyUseCase,
+    DeleteContactUseCase,
   ],
 })
 export class CoreModule {}

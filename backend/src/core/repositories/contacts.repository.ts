@@ -46,4 +46,13 @@ export class ContactsRepository {
       return Result.fail<Error>(new DatabaseException(error.message));
     }
   }
+
+  delete(id: string): Result<void> | Result<Error> {
+    try {
+      this.database.deleteContactById(id);
+      return Result.ok<void>();
+    } catch (error) {
+      return Result.fail<Error>(new DatabaseException(error.message));
+    }
+  }
 }
