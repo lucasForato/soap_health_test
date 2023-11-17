@@ -11,7 +11,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-20">
-      <div className="bg-white p-4 w-72 rounded-lg">
+      <div className="bg-white p-4 lg:w-1/2 w-2/3 rounded-lg">
         <div className="flex justify-end">
           <button onClick={onClose}>
             <X />
