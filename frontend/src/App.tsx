@@ -1,4 +1,5 @@
 import { PhoneBook } from "./components/PhoneBook";
+import toast, { Toaster } from "react-hot-toast";
 import { BookUser } from "lucide-react";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
           <h1 className="text-2xl px-5 text-white text-bold">Phone Book App</h1>
         </div>
         <div className="flex w-full h-full">
+          <Toaster />
           <PhoneBook />
         </div>
       </div>

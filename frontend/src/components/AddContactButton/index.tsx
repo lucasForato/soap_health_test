@@ -1,6 +1,9 @@
 import { PlusSquare } from "lucide-react";
 import { useState } from "react";
 import { Modal } from "../Modal";
+import { addContact } from "../../repositories/AddContact";
+import toast from "react-hot-toast";
+import { error } from "console";
 
 const AddContactButton = () => {
   const [showModal, setShowModal] = useState(false);
@@ -14,9 +17,45 @@ const AddContactButton = () => {
     setShowModal(false);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-    // Add your logic to create the contact here
+
+    const { firstName, lastName, phoneNumber } = event.target.elements;
+
+    const contact = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      phoneNumber: phoneNumber.value,
+    };
+
+    if (contact.firstName === "") {
+      toast.error("First name is required");
+      return;
+    }
+
+    if (contact.lastName === "") {
+      toast.error("Last name is required");
+      return;
+    }
+
+    if (contact.phoneNumber === "") {
+      toast.error("Phone number is required");
+      return;
+    }
+
+    if (contact.firstName.includes(" ")) {
+      toast.error("First name cannot contain spaces");
+      return;
+    }
+
+    addContact(contact)
+      .then(() => {
+        toast.success("Contact added successfully");
+        setShowModal(false);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -31,7 +70,7 @@ const AddContactButton = () => {
       <Modal isOpen={showModal} onClose={handleCloseModal}>
         <div className="flex flex-col items-center m-5">
           <h2 className="my-5 text-lg font-semibold">Add contact</h2>
-          <form onSubmit={handleSubmit} className='flex flex-col'>
+          <form onSubmit={handleSubmit} className="flex flex-col">
             <input
               type="text"
               name="firstName"

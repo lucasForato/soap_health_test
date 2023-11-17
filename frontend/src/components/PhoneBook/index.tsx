@@ -16,14 +16,13 @@ interface ItemProps {
 
 export const PhoneBook: React.FC<Props> = () => {
   const [items, setItems] = React.useState<ItemProps[]>([]);
-  const { httpClient } = useHttpClient();
 
   async function loadData() {
     try {
-      const response = await httpClient.get<ItemProps[]>(
-        "http://localhost:5000/api/v1/contacts/"
-      );
-      setItems(response.data);
+      // const response = await httpClient.get<ItemProps[]>(
+      //   "http://localhost:5000/api/v1/contacts/"
+      // );
+      setItems([]);
     } catch (error) {
       console.log(error);
     }
