@@ -2,14 +2,8 @@
 
 ## Table of Contents
 1. [Introduction](#introduction)
-    - [What does the project do?](#what-does-the-project-do)
-    - [What technologies were used?](#what-technologies-were-used)
 2. [How to Run Using Docker and Docker Compose](#how-to-run-using-docker-and-docker-compose)
-    - [Prerequisites](#prerequisites-docker-compose)
-    - [How to](#how-to-run-using-docker-compose)
-4. [How to Run Using Node or Make](#how-to-run-using-node-or-make)
-    - [Prerequisites](#prerequisites-node-or-make)
-    - [How to](#how-to-run-using-node-or-make)
+3. [How to Run Using Node or Make](#how-to-run-using-node-or-make)
 5. [Thank You Note](#thank-you-note)
 
 ## Introduction
