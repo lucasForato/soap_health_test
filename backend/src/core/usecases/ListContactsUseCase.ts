@@ -1,10 +1,9 @@
+import { Injectable } from '@nestjs/common';
+import { IsOptional, IsString } from 'class-validator';
 import { Result } from 'src/shared/Result';
 import { UseCase } from 'src/shared/UseCase';
-import { ContactsRepository } from '../repositories/contacts.repository';
 import Contact, { ContactDto } from '../entities/Contact';
-import { Injectable } from '@nestjs/common';
-import { PhoneNumber } from 'src/shared/PhoneNumber';
-import { IsOptional, IsString, Length } from 'class-validator';
+import { ContactsRepository } from '../repositories/contacts.repository';
 
 export class ListContactsUseCaseInput {
   @IsOptional()
@@ -12,7 +11,6 @@ export class ListContactsUseCaseInput {
   name?: string;
 
   @IsString()
-  @Length(1, 15)
   @IsOptional()
   phoneNumber?: string;
 }
