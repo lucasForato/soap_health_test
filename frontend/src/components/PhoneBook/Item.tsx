@@ -1,5 +1,6 @@
 import React from "react";
 import UpdateContactButton from "../UpdateContactButton";
+import DeleteContactButton from "../DeleteContactButton";
 
 interface Props {
   firstName: string;
@@ -25,7 +26,10 @@ export const PhoneBookItem: React.FC<Props> = ({
         <p className="font-bold">{`${firstName} ${lastName}`}</p>
         <p className="text-gray-500 text-sm">{formattedPhoneNumber}</p>
       </div>
-      <UpdateContactButton />
+      <div>
+        <UpdateContactButton />
+        <DeleteContactButton />
+      </div>
     </div>
   );
 };

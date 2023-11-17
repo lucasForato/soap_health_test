@@ -1,4 +1,4 @@
-import { PenSquare } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Modal } from "../Modal";
 
@@ -6,7 +6,7 @@ interface Props {
   isEnabled: boolean;
 }
 
-const UpdateContactButton = () => {
+const DeleteContactButton = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -21,18 +21,18 @@ const UpdateContactButton = () => {
   return (
     <>
       <button
-        className="bg-blue-400 text-white px-3 py-3 rounded-l-md hover:bg-blue-500 focus:outline-none"
+        className="bg-red-400 text-white px-3 py-3 rounded-r-md hover:bg-red-500 focus:outline-none"
         onClick={handleOpenModal}
       >
-        <PenSquare />
+        <Trash2 />
       </button>
       <Modal isOpen={showModal} onClose={handleCloseModal}>
         <div>
-          <h2 className="">Update Contact</h2>
+          <h2 className="">Delete Contact</h2>
         </div>
       </Modal>
     </>
   );
 };
 
-export default UpdateContactButton;
+export default DeleteContactButton;
