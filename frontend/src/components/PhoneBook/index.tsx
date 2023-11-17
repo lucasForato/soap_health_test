@@ -32,7 +32,7 @@ export const PhoneBook: React.FC<Props> = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-row items-center justify-around">
         <h2 className="text-xl py-5">Contacts</h2>
         <AddContactButton />
       </div>

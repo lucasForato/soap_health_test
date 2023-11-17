@@ -17,15 +17,12 @@ const AddContactButton = () => {
   return (
     <>
       <button
-        className="bg-blue-400 hover:bg-blue-500 text-white flex font-bold h-fit py-3 items-center justify-between px-10 rounded"
+        className="bg-blue-400 hover:bg-blue-500 text-white flex font-bold h-fit py-2 items-center justify-between px-10 rounded"
         onClick={handleOpenModal}
       >
-        <div className='border-2 w-full'>
-        <PlusSquare />
-        <p className="border-2">Add Contact</p>
-        </div>
+        <PlusSquare style={{ paddingRight: "0.3rem" }} />
+        Add Contact
       </button>
-
       <Modal isOpen={showModal} onClose={handleCloseModal}>
         <div></div>
       </Modal>
