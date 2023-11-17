@@ -1,7 +1,5 @@
 import React from "react";
-import useHttpClient from "../../infrastructure/httpClient";
 import AddContactButton from "../AddContactButton";
-import UpdateContactButton from "../UpdateContactButton";
 import SearchBar from "../Search";
 import { PhoneBookItem } from "./Item";
 import { listContacts } from "../../repositories/ListContacts";
@@ -12,10 +10,14 @@ interface Props {}
 export const PhoneBook: React.FC<Props> = () => {
   const [items, setItems] = React.useState<Contact[]>([]);
   const [listHasUpdated, setListHasUpdated] = React.useState(false);
+  const [searchParams, setSearchParams] = React.useState<{
+    name: string;
+    phoneNumber: string;
+  }>({ name: "", phoneNumber: "" });
 
   async function loadData() {
     try {
-      const contacts = await listContacts();
+      const contacts = await listContacts(searchParams);
       setItems(contacts);
     } catch (error) {
       console.log(error);
@@ -36,7 +38,10 @@ export const PhoneBook: React.FC<Props> = () => {
       </div>
 
       <div className="flex flex-row m-5 mt-10 justify-center">
-        <SearchBar />
+        <SearchBar
+          setListHasUpdated={setListHasUpdated}
+          setSearchParams={setSearchParams}
+        />
       </div>
 
       {items.map((item) => {
