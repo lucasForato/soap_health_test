@@ -25,7 +25,7 @@ import DeleteContactUseCase, {
   DeleteContactUseCaseInput,
 } from '../usecases/DeleteContactUseCase';
 
-@Controller('contacts')
+@Controller('v1/contacts')
 export class ContactsController {
   constructor(
     private createContactUseCase: CreateContactUseCase,

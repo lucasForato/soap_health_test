@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { PhoneBook } from "./components/PhoneBook";
+import { BookUser } from "lucide-react";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-screen justify-center flex drop-shadow-sm h-screen">
+      <div className="drop-shadow-sm w-1/2 h-screen border">
+        <div className="flex justify-center w-full h-fit p-5 items-center bg-blue-400">
+          <BookUser style={{ color: "white", height: "2.25rem" }} />
+          <h1 className="text-2xl px-5 text-white text-bold">Phone Book App</h1>
+        </div>
+        <div className='flex w-full h-full'>
+          <PhoneBook />
+        </div>
+      </div>
     </div>
   );
 }
