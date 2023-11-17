@@ -33,7 +33,7 @@ For this project I used the following tools:
 - Docker Compose installed on your machine. You can find installation instructions [here](https://docs.docker.com/compose/install/).
 - Make installed on your machine.
 
-### How to Run Using Docker Compose
+### How to Run Using Docker and Docker Compose
 1. Clone the repository: `git clone [repository_url]`
 2. Navigate to the project directory: `cd soap_health_test`
 3. Run the application using make: `make run`
