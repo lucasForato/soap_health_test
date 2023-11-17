@@ -29,7 +29,7 @@ export const PhoneBookItem: React.FC<Props> = ({
         <p className="text-gray-500 text-sm">{formattedPhoneNumber}</p>
       </div>
       <div>
-        <UpdateContactButton />
+        <UpdateContactButton setListHasUpdated={setListHasUpdated} id={id} />
         <DeleteContactButton setListHasUpdated={setListHasUpdated} id={id} />
       </div>
     </div>
