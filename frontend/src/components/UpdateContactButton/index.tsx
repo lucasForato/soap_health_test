@@ -1,8 +1,12 @@
-import React, { useState } from "react";
 import { PlusSquare } from "lucide-react";
+import { useState } from "react";
 import { Modal } from "../Modal";
 
-const AddContactButton = () => {
+interface Props {
+  isEnabled: boolean;
+}
+
+const UpdateContactButton = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -17,17 +21,18 @@ const AddContactButton = () => {
   return (
     <>
       <button
-        className="bg-blue-400 hover:bg-blue-500 text-white flex font-bold h-fit py-2 items-center justify-between px-10 rounded"
+        className="bg-blue-400 text-white px-4 py-2 rounded-lg hover:bg-blue-500 focus:outline-none"
         onClick={handleOpenModal}
       >
-        <PlusSquare style={{ paddingRight: "0.3rem" }} />
-        Add Contact
+        Update Contact
       </button>
       <Modal isOpen={showModal} onClose={handleCloseModal}>
-        <div></div>
+        <div>
+          <h2 className="">Update Contact</h2>
+        </div>
       </Modal>
     </>
   );
 };
 
-export default AddContactButton;
+export default UpdateContactButton;

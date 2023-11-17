@@ -1,6 +1,9 @@
 import React from "react";
 import useHttpClient from "../../infrastructure/httpClient";
-import AddContactButton from "../AddContentModal";
+import AddContactButton from "../AddContactButton";
+import UpdateContactButton from "../UpdateContactButton";
+import SearchBar from "../Search";
+import { PhoneBookItem } from "./Item";
 
 interface Props {}
 
@@ -32,16 +35,17 @@ export const PhoneBook: React.FC<Props> = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-row items-center justify-around">
-        <h2 className="text-xl py-5">Contacts</h2>
+      <div className="flex lg:flex-row flex-col items-center lg:m-5 h-32 lg:h-fit justify-around">
+        <h2 className="text-xl">Contacts</h2>
         <AddContactButton />
       </div>
 
-      <div>{/* ADD A SEARCH BAR AROUND HERE */}</div>
+      <div className="flex flex-row m-5 mt-10 justify-center">
+        <SearchBar />
+      </div>
 
       {items.map((item) => {
-        // EACH ITEM HAS TO BE SELECTABLE AND UPDATABLE AFTER SELECTION IS DONE
-        return <p>{item.firstName}</p>;
+        return <PhoneBookItem {...item} />;
       })}
     </div>
   );
