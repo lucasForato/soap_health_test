@@ -7,6 +7,7 @@ interface Props {
   lastName: string;
   phoneNumber: string;
   id: string;
+  setListHasUpdated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const PhoneBookItem: React.FC<Props> = ({
@@ -14,6 +15,7 @@ export const PhoneBookItem: React.FC<Props> = ({
   lastName,
   phoneNumber,
   id,
+  setListHasUpdated,
 }) => {
   const formattedPhoneNumber = `${phoneNumber.slice(0, -8)} ${phoneNumber.slice(
     -8,
@@ -28,7 +30,7 @@ export const PhoneBookItem: React.FC<Props> = ({
       </div>
       <div>
         <UpdateContactButton />
-        <DeleteContactButton />
+        <DeleteContactButton setListHasUpdated={setListHasUpdated} id={id} />
       </div>
     </div>
   );

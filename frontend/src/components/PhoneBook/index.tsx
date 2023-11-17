@@ -52,6 +52,7 @@ export const PhoneBook: React.FC<Props> = () => {
             phoneNumber={item.phoneNumber}
             id={item.id!}
             key={item.id}
+            setListHasUpdated={setListHasUpdated}
           />
         );
       })}
