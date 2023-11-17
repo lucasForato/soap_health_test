@@ -34,7 +34,7 @@ const SearchBar: React.FC<Props> = ({ setListHasUpdated, setSearchParams }) => {
         className="border-2 border-gray-300 bg-white h-10 px-5 lg:pr-16 rounded-md lg:w-2/5 w-full border-l-none text-sm focus:outline-none"
         type="search"
         name="name"
-        placeholder="Name"
+        placeholder="Search by name"
         value={name}
         onChange={handleNameChange}
       />
@@ -42,7 +42,7 @@ const SearchBar: React.FC<Props> = ({ setListHasUpdated, setSearchParams }) => {
         className="border-2 border-gray-300 bg-white h-10 px-5 lg:pr-16 rounded-md lg:w-2/5 w-full text-sm focus:outline-none"
         type="tel"
         name="phone"
-        placeholder="Phone Number"
+        placeholder="Search by phone number"
         value={phoneNumber}
         onChange={handlePhoneNumberChange}
       />
