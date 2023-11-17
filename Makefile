@@ -6,7 +6,14 @@ install-backend:
 
 install: install-frontend install-backend
 
+frontend: install-frontend
+	@ cd frontend && npm run start
+
+backend: install-backend
+	@ cd backend && npm run start:dev
+
 compose:
 	@ docker compose up --build
 
 run: install compose
+
