@@ -1,15 +1,17 @@
 import { PlusSquare } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Modal } from "../Modal";
 import { addContact } from "../../repositories/AddContact";
 import toast from "react-hot-toast";
-import { error } from "console";
 
-const AddContactButton = () => {
+interface Props {
+  setListHasUpdated: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AddContactButton: React.FC<Props> = ({ setListHasUpdated }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
-    console.log("clicked");
     setShowModal(true);
   };
 
@@ -52,6 +54,7 @@ const AddContactButton = () => {
       .then(() => {
         toast.success("Contact added successfully");
         setShowModal(false);
+        setListHasUpdated(true);
       })
       .catch((error) => {
         toast.error(error.message);
